@@ -1,3 +1,6 @@
+// параметр динамический, рендерим при запросе
+export const instant = false;
+
 interface PostPageProps {
   params: Promise<{ id: string }>;
 }

@@ -1,3 +1,6 @@
+// id курса приходит из url, рендерим при запросе
+export const instant = false;
+
 interface CoursePageProps {
   params: Promise<{ id: string }>;
 }

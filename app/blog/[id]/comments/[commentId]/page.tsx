@@ -1,3 +1,6 @@
+// вложенный динамический сегмент
+export const instant = false;
+
 interface CommentPageProps {
   params: Promise<{ id: string; commentId: string }>;
 }
