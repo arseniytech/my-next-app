@@ -1,3 +1,5 @@
+export const instant = false; // остальные slug рендерятся по запросу
+
 export async function generateStaticParams() {
   return [
     { slug: 'nextjs-vvedenie' },

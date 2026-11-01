@@ -1,5 +1,7 @@
 import AddToCartButton from './add-to-cart-button';
 
+export const instant = false; // id любой может прийти, делаем блокирующий рендер
+
 // Server Component: получает данные
 async function getProduct(id: string) {
   // Имитация запроса к БД

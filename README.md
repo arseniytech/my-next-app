@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# my-next-app
 
-## Getting Started
+Практическая работа по курсу Next.js: структура проекта, Server и Client Components.
 
-First, run the development server:
+## Как запустить
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Открыть http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Что внутри
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/server-demo` — Server Component (async, время с сервера)
+- `/client-demo` — Client Component (`use client`, счётчик кликов)
+- `/greet-demo` — Server Function (`use server`, приветствие с сервера)
+- `/about` — статическая страница
+- `/blog/[slug]` — динамический маршрут + generateStaticParams
+- `/products/[id]` — сервер получает товар, кнопка в корзину — клиент
 
-## Learn More
+## Ответы на вопросы самопроверки
 
-To learn more about Next.js, take a look at the following resources:
+**1. Какую роль играют папки app/, public/ и файл next.config.js?**
+`app/` — маршруты и страницы (App Router), `public/` — статика (картинки, favicon), `next.config.js` — настройки Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**2. Какие файлы в App Router делают маршрут публичным, а какие создают общий UI?**
+`page.tsx` делает маршрут публичным (UI конкретного URL), `layout.tsx` — общий UI для сегмента (навигация, футер).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**3. В чём разница между Server и Client Component с точки зрения выполнения?**
+Server выполняется только на сервере, его код не уходит в браузер. Client рендерится на сервере в HTML, но потом гидратируется в браузере и может использовать хуки.
 
-## Deploy on Vercel
+**4. Когда нужна директива 'use client'?**
+Когда компонент использует хуки (useState, useEffect) или обработчики событий (onClick). Ставится первой строкой файла.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**5. Как создать динамический маршрут и получить параметр в Next.js 15?**
+Папка с квадратными скобками `[slug]`, в компоненте `params` — это Promise, его нужно await-ить: `const { slug } = await params;`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**6. Что такое generateStaticParams?**
+Функция, которая при сборке перечисляет значения динамических сегментов, чтобы Next.js заранее сгенерировал статические HTML для них.
+
+**7. Почему Server Components не увеличивают клиентский бандл?**
+Их код выполняется на сервере и никогда не попадает в бандл браузера — в клиент отправляется только готовый HTML.
