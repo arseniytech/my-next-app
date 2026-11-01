@@ -1,19 +1,22 @@
-import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import Link from 'next/link';
 import './globals.css';
 
-export const metadata: Metadata = {
-  title: 'My Next App',
-  description: 'структура проекта next.js, серверные и клиентские компоненты',
-};
+interface RootLayoutProps {
+  children: ReactNode;
+}
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <nav style={{ padding: '16px', borderBottom: '1px solid #ccc' }}>
+          <Link href="/" style={{ marginRight: '16px' }}>Главная</Link>
+          <Link href="/about" style={{ marginRight: '16px' }}>О нас</Link>
+          <Link href="/blog" style={{ marginRight: '16px' }}>Блог</Link>
+        </nav>
+        <main style={{ padding: '24px' }}>{children}</main>
+      </body>
     </html>
   );
 }
