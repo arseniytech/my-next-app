@@ -19,6 +19,7 @@ export default function NavBar() {
       <Link href="/" style={linkStyle('/')}>Главная</Link>
       <Link href="/about" style={linkStyle('/about')}>О нас</Link>
       <Link href="/blog" style={linkStyle('/blog')}>Блог</Link>
+      <Link href="/courses" style={linkStyle('/courses')}>Курсы</Link>
       <button onClick={() => router.push('/about')}>
         Перейти к «О нас»
       </button>
